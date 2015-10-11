@@ -19,7 +19,7 @@ Injector Android is a project that provides the boilerplate for a testable appli
 ### Dependency Injection
 For the most part, this is standard Dagger2 DI. There is one additional layer that abstracts the fact that we use Dagger from the code, and provides a framework for hierarchical scoping.
     
-This project contains a bare-bones implementation of this concept by providing a narrowing scope of `Injectors. This is accomplished through the use of a custom `Application`
+This project contains a bare-bones implementation of this concept by providing a narrowing scope of `Injectors`. This is accomplished through the use of a custom `Application`
 class, and a base class for both `Activity` and `Fragment`.
 
 `Injectors` are extensions of `Components`, and may define extension methods to provide narrower scopes / `Injectors`.
