@@ -10,7 +10,7 @@ Injector Android is a project that provides the boilerplate for a testable appli
   * in app/src/main/AndroidManifest.xml line 2
   * (OPTIONAL) in the actual code
 
-## Features:
+## Features
 * [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) using [Dagger2](https://github.com/google/dagger)
 * Unit testing using [Robolectric 3](https://github.com/robolectric/robolectric)
 * Integration testing using the [Android Testing Support Library / Espresso](https://developer.android.com/tools/testing-support-library/index.html) (work in progress)
@@ -19,14 +19,14 @@ Injector Android is a project that provides the boilerplate for a testable appli
 ### Dependency Injection
 For the most part, this is standard Dagger2 DI. There is one additional layer that abstracts the fact that we use Dagger from the code, and provides a framework for hierarchical scoping.
     
-This project contains a bare-bones implementation of this concept by providing a narrowing scope of `Injector`s. This is accomplished through the use of a custom `Application`
+This project contains a bare-bones implementation of this concept by providing a narrowing scope of `Injectors. This is accomplished through the use of a custom `Application`
 class, and a base class for both `Activity` and `Fragment`.
 
-`Injector`s are extensions of `Component`s, and may define extension methods to provide narrower scopes / `Injector`s. 
+`Injectors` are extensions of `Components`, and may define extension methods to provide narrower scopes / `Injectors`.
 
 The top level is the `InjectorAndroidApp` which has an `ApplicationInjector` (the `ApplicationInjector` can be overridden as we'll see when we get to testing).
 `InjectorAndroidApp` exposes the `ApplicationInjector` so that other scopes can use it to get their `Injector`.
-A `SharedPreferences` dependency is provided out of the box; adding more is as simple as adding the dependency to the `Component` / `Injector`.
+A s`haredPreferences` dependency is provided out of the box; adding more is as simple as adding the dependency to the `Component` / `Injector`.
 
 The next scope is at the `Activity` level, and so `ApplicationInjector` exposes an extension method to get an `ActivityInjector` for it:
 
@@ -68,18 +68,18 @@ And a method would be added to `ActivityInjector`:
     
 The next scope is at the `Fragment` level, and follows the same principles as the `Activity` scope.
 
-Additional scopes can be added at any level using extension methods, and aside from wiring the `Injector`s, everything is vanilla Dagger2.
+Additional scopes can be added at any level using extension methods, and aside from wiring the `Injectors`, everything is vanilla Dagger2.
 
 For convenience, this project includes 4 scopes (`PerApp`, `PerActivity`, `PerFragment`, and `PerRequest`) and 3 qualifiers (`ForApp`, `ForActivity`, and `ForFragment`).
 
 #### Testing
-Testing is made easier by virtue of overriding the `ApplicationInjector` with an implementation that replaces the Dagger2 `Module`s with `Module`s that return implementations
+Testing is made easier by virtue of overriding the `ApplicationInjector` with an implementation that replaces the Dagger2 `Modules` with `Modules` that return implementations
 suitable for testing (i.e. mocked instances, etc...).
 
 This project includes the `InjectorAndroidRobolectricGradleTestRunner` to use as a test runner for Robolectric tests.
 Aside from providing testing implementations of the `Injector` hierarchy that returns a mock (using Mockito), it allows for overriding the mocks that will be injected.
 This can be done by creating a field in your test class that is annotated with `OverrideInject` that specifies the module it should override the dependency from. 
-So if `MainActivity` has an injected `SharedPreferences`, and we are testing `MainActivity`:
+So if `MainActivity` has an injected s`haredPreferences`, and we are testing `MainActivity`:
 
     @RunWith(InjectorAndroidRobolectricGradleTestRunner.class)
     public class MainActivityTest {
@@ -87,7 +87,7 @@ So if `MainActivity` has an injected `SharedPreferences`, and we are testing `Ma
         SharedPreferences sharedPreferences; // note that this shouldn't be assigned a value; it will be set by the framework
     }
     
-When Robolectric runs `MainActivity`, its `sharedPreferences` instance will be the same as the instance in our test class, so it can be stubbed, verified, etc...
+When Robolectric runs `MainActivity`, its s`haredPreferences` instance will be the same as the instance in our test class, so it can be stubbed, verified, etc...
 
 To add a new test module, create a new class in `test/java/com/staticbloc/injector/android/injection/modules` and extend the `Module` that you want to test. It should also
 implement `OverridableModule` (so we can use `OverrideInject` with it). It's constructor should take whatever parameters need to passed to the super-`Module`, as well as an instance of 
@@ -119,7 +119,7 @@ Here's what `TestAndroidModule` looks like:
       }
     }
     
-The test `Injector`s follow the same principles as the regular ones. Just make sure to remember to use test `Modules`s when creating the components!
+The test `Injectors` follow the same principles as the regular ones. Just make sure to remember to use test `Modules` when creating the components!
 
 ### Testing Setup
 * Unit Tests
