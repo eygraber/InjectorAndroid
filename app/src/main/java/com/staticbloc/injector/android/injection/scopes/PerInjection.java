@@ -8,4 +8,4 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Scope
-public @interface PerRequest {}
+public @interface PerInjection {}
