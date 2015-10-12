@@ -70,7 +70,7 @@ The next scope is at the `Fragment` level, and follows the same principles as th
 
 Additional scopes can be added at any level using extension methods, and aside from wiring the `Injectors`, everything is vanilla Dagger2.
 
-For convenience, this project includes 3 scopes (`PerApp`, `PerActivity`, `PerFragment`) and 3 qualifiers (`ForApp`, `ForActivity`, and `ForFragment`).
+For convenience, this project includes 4 scopes (`PerApp`, `PerActivity`, `PerFragment`, and `PerRequest`) and 3 qualifiers (`ForApp`, `ForActivity`, and `ForFragment`).
 
 #### Testing
 Testing is made easier by virtue of overriding the `ApplicationInjector` with an implementation that replaces the Dagger2 `Modules` with `Modules` that return implementations
