@@ -11,7 +11,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
   compileSdkVersion 23
-  buildToolsVersion "23.0.1"
+  buildToolsVersion "23.0.3"
 
   defaultConfig {
     applicationId "com.staticbloc.injector.android"
@@ -49,7 +49,7 @@ dependencies {
   provided 'org.glassfish:javax.annotation:10.0-b28'
   compile 'com.google.dagger:dagger:2.0.1'
 
-  compile 'com.android.support:appcompat-v7:23.0.1'
+  compile 'com.android.support:appcompat-v7:23.4.0'
 
   /* UNIT TESTS */
   testCompile 'junit:junit:4.12'
