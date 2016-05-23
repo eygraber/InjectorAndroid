@@ -3,7 +3,7 @@ package com.staticbloc.injector.android.app;
 import android.app.Application;
 import com.staticbloc.injector.android.injection.injectors.ApplicationInjector;
 
-public class InjectorAndroidApp extends Application {
+public class InjectorApplication extends Application {
   private ApplicationInjector applicationInjector;
 
   private boolean testApplication = false;
@@ -24,7 +24,7 @@ public class InjectorAndroidApp extends Application {
       applicationInjector = new ApplicationInjectorImpl(this);
     }
 
-    if(applicationInjector != null) applicationInjector.inject(this);
+    if(applicationInjector != null) applicationInjector.component().inject(this);
 
     // injected members can be used starting here
   }

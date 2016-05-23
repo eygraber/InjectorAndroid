@@ -4,7 +4,7 @@
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application android:allowBackup="true"
-               android:name="com.staticbloc.injector.android.app.InjectorAndroidApp"
+               android:name=".app.InjectorApplication"
                android:label="@string/app_name"
                android:icon="@mipmap/ic_launcher"
                android:theme="@style/AppTheme">

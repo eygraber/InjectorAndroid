@@ -1,27 +1,30 @@
 package com.staticbloc.injector.android.injection.injectors;
 
-import android.content.SharedPreferences;
-import com.staticbloc.injector.android.app.BaseActivity;
-import com.staticbloc.injector.android.app.InjectorAndroidApp;
+import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
+import com.staticbloc.injector.android.app.InjectorApplication;
 import com.staticbloc.injector.android.injection.OverridableModule;
 import com.staticbloc.injector.android.injection.components.ActivityComponent;
+import com.staticbloc.injector.android.injection.components.AppCompatActivityComponent;
 import com.staticbloc.injector.android.injection.components.ApplicationComponent;
 import com.staticbloc.injector.android.injection.components.DaggerActivityComponent;
+import com.staticbloc.injector.android.injection.components.DaggerAppCompatActivityComponent;
 import com.staticbloc.injector.android.injection.components.DaggerApplicationComponent;
 import com.staticbloc.injector.android.injection.modules.TestActivityModule;
 import com.staticbloc.injector.android.injection.modules.TestAndroidModule;
+import com.staticbloc.injector.android.injection.modules.TestAppCompatActivityModule;
 import com.staticbloc.injector.android.injection.modules.TestApplicationModule;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestApplicationInjectorImpl implements ApplicationInjector {
-  private final InjectorAndroidApp application;
+  private final InjectorApplication application;
   private final ApplicationComponent component;
 
   private final Map<Class<? extends OverridableModule>, Map<Class, Object>> moduleOverrides;
 
-  public TestApplicationInjectorImpl(InjectorAndroidApp application) {
+  public TestApplicationInjectorImpl(InjectorApplication application) {
     this.application = application;
 
     moduleOverrides = new HashMap<>();
@@ -33,23 +36,28 @@ public class TestApplicationInjectorImpl implements ApplicationInjector {
   }
 
   @Override
-  public SharedPreferences sharedPreferences() {
-    return component.sharedPreferences();
-  }
-
-  @Override
-  public void inject(InjectorAndroidApp app) {
-    component.inject(app);
-  }
-
-  @Override
-  public ActivityInjector extend(BaseActivity activity) {
+  public ActivityInjector extend(Activity activity) {
     ActivityComponent activityComponent = DaggerActivityComponent.builder()
         .applicationComponent(component)
         .activityModule(new TestActivityModule(activity, this))
         .build();
 
     return new TestActivityInjectorImpl(activityComponent, this);
+  }
+
+  @Override
+  public AppCompatActivityInjector extend(AppCompatActivity activity) {
+    AppCompatActivityComponent appCompatActivityComponent = DaggerAppCompatActivityComponent.builder()
+        .applicationComponent(component)
+        .appCompatActivityModule(new TestAppCompatActivityModule(activity, this))
+        .build();
+
+    return new TestAppCompatActivityInjectorImpl(appCompatActivityComponent, this);
+  }
+
+  @Override
+  public ApplicationComponent component() {
+    return component;
   }
 
   public boolean hasOverridingBinding(Class<? extends OverridableModule> moduleClass, Class bindingType) {

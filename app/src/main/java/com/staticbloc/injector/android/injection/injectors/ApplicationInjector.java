@@ -1,8 +1,11 @@
 package com.staticbloc.injector.android.injection.injectors;
 
-import com.staticbloc.injector.android.app.BaseActivity;
+import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import com.staticbloc.injector.android.injection.components.ApplicationComponent;
 
-public interface ApplicationInjector extends ApplicationComponent {
-  ActivityInjector extend(BaseActivity activity);
+public interface ApplicationInjector {
+  ActivityInjector extend(Activity activity);
+  AppCompatActivityInjector extend(AppCompatActivity activity);
+  ApplicationComponent component();
 }

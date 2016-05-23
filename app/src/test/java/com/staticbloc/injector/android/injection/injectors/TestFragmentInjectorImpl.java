@@ -1,7 +1,5 @@
 package com.staticbloc.injector.android.injection.injectors;
 
-import android.support.v4.app.Fragment;
-import com.staticbloc.injector.android.app.BaseFragment;
 import com.staticbloc.injector.android.injection.components.FragmentComponent;
 
 public class TestFragmentInjectorImpl implements FragmentInjector {
@@ -14,12 +12,7 @@ public class TestFragmentInjectorImpl implements FragmentInjector {
   }
 
   @Override
-  public Fragment fragment() {
-    return component.fragment();
-  }
-
-  @Override
-  public void inject(BaseFragment fragment) {
-    component.inject(fragment);
+  public FragmentComponent component() {
+    return component;
   }
 }

@@ -2,7 +2,7 @@ package com.staticbloc.injector.android.injection.modules;
 
 import android.content.SharedPreferences;
 import android.location.LocationManager;
-import com.staticbloc.injector.android.app.InjectorAndroidApp;
+import com.staticbloc.injector.android.app.InjectorApplication;
 import com.staticbloc.injector.android.injection.OverridableModule;
 import com.staticbloc.injector.android.injection.injectors.TestApplicationInjectorImpl;
 import com.staticbloc.injector.android.injection.scopes.PerApp;
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mock;
 public class TestAndroidModule extends AndroidModule implements OverridableModule {
   private final TestApplicationInjectorImpl testApplicationInjector;
 
-  public TestAndroidModule(InjectorAndroidApp application, TestApplicationInjectorImpl testApplicationInjector) {
+  public TestAndroidModule(InjectorApplication application, TestApplicationInjectorImpl testApplicationInjector) {
     super(application);
 
     this.testApplicationInjector = testApplicationInjector;

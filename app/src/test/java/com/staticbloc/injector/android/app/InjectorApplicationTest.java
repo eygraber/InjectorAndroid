@@ -6,12 +6,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(InjectorAndroidRobolectricGradleTestRunner.class)
-public class InjectorAndroidApplicationTest {
-  private InjectorAndroidApp subject;
+public class InjectorApplicationTest {
+  private InjectorApplication subject;
 
   @Before
   public void setup() {
-    subject = new InjectorAndroidApp();
+    subject = new InjectorApplication();
     subject.setIsTestApplication(true);
   }
 

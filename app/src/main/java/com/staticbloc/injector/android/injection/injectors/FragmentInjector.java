@@ -1,25 +1,20 @@
 package com.staticbloc.injector.android.injection.injectors;
 
-import android.support.v4.app.Fragment;
-import com.staticbloc.injector.android.app.BaseFragment;
 import com.staticbloc.injector.android.injection.components.FragmentComponent;
 
-public interface FragmentInjector extends FragmentComponent {
+public interface FragmentInjector {
+  FragmentComponent component();
+
   /*package*/ class FragmentInjectorImpl implements FragmentInjector {
-    private FragmentComponent fragmentComponent;
+    private FragmentComponent component;
 
-    public FragmentInjectorImpl(FragmentComponent fragmentComponent) {
-      this.fragmentComponent = fragmentComponent;
+    public FragmentInjectorImpl(FragmentComponent component) {
+      this.component = component;
     }
 
     @Override
-    public Fragment fragment() {
-      return fragmentComponent.fragment();
-    }
-
-    @Override
-    public void inject(BaseFragment fragment) {
-      fragmentComponent.inject(fragment);
+    public FragmentComponent component() {
+      return component;
     }
   }
 }

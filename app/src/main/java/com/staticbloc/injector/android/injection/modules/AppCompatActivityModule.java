@@ -1,20 +1,20 @@
 package com.staticbloc.injector.android.injection.modules;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import com.staticbloc.injector.android.injection.scopes.PerActivity;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ActivityModule {
-  protected final Activity activity;
+public class AppCompatActivityModule {
+  protected final AppCompatActivity activity;
 
-  public ActivityModule(Activity activity) {
+  public AppCompatActivityModule(AppCompatActivity activity) {
     this.activity = activity;
   }
 
   @Provides @PerActivity
-  Activity provideActivity() {
+  AppCompatActivity provideActivity() {
     return activity;
   }
 }

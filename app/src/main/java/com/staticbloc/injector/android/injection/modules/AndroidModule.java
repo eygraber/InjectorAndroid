@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
-import com.staticbloc.injector.android.app.InjectorAndroidApp;
+import com.staticbloc.injector.android.app.InjectorApplication;
 import com.staticbloc.injector.android.injection.qualifiers.ForApp;
 import com.staticbloc.injector.android.injection.scopes.PerApp;
 import dagger.Module;
@@ -12,9 +12,9 @@ import dagger.Provides;
 
 @Module
 public class AndroidModule {
-  protected final InjectorAndroidApp application;
+  protected final InjectorApplication application;
 
-  public AndroidModule(InjectorAndroidApp application) {
+  public AndroidModule(InjectorApplication application) {
     this.application = application;
   }
 
